@@ -1,30 +1,41 @@
 <!doctype html>
 <html lang="vi" class="h-full">
- <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Halloween Celebration</title>
-  <script src="/_sdk/element_sdk.js"></script>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <style>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Halloween Celebration</title>
+    <link href="https://fonts.googleapis.com/css2?family=Creepster&display=swap" rel="stylesheet">
+    
+    <script src="/_sdk/element_sdk.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <style>
+        /* Base styles */
         body {
             box-sizing: border-box;
+            font-family: 'Creepster', cursive, Arial, sans-serif;
         }
-        
+
+        /* Custom Colors & Background Gradient (Default) */
+        .gradient-bg {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+        }
+
+        /* Keyframes for Animations */
         @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(3deg); }
         }
         
         @keyframes glow {
-            0%, 100% { text-shadow: 0 0 20px #ff6b35, 0 0 30px #ff6b35, 0 0 40px #ff6b35; }
-            50% { text-shadow: 0 0 30px #ff6b35, 0 0 40px #ff6b35, 0 0 50px #ff6b35; }
+            0%, 100% { text-shadow: 0 0 20px #ff6b35, 0 0 30px #ff6b35; }
+            50% { text-shadow: 0 0 35px #ff6b35, 0 0 45px #ff6b35; }
         }
         
         @keyframes bounce {
             0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-            40% { transform: translateY(-10px); }
-            60% { transform: translateY(-5px); }
+            40% { transform: translateY(-15px); }
+            60% { transform: translateY(-7px); }
         }
         
         @keyframes spin {
@@ -32,97 +43,99 @@
             to { transform: rotate(360deg); }
         }
         
-        .float { animation: float 3s ease-in-out infinite; }
-        .glow { animation: glow 2s ease-in-out infinite alternate; }
-        .bounce { animation: bounce 2s infinite; }
-        .spin { animation: spin 20s linear infinite; }
+        /* Utility Classes for Animations */
+        .float { animation: float 4s ease-in-out infinite; }
+        .glow { animation: glow 2.5s ease-in-out infinite alternate; }
+        .bounce { animation: bounce 1.8s infinite; }
+        .spin { animation: spin 25s linear infinite; }
         
-        .gradient-bg {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
-        }
-        
+        /* Custom Shadows */
         .pumpkin-shadow {
-            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.3);
+            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.4);
+        }
+        .activity-card {
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s ease-in-out;
         }
     </style>
-  <style>@view-transition { navigation: auto; }</style>
-  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
- </head>
- <body class="h-full gradient-bg text-white overflow-x-hidden">
-  <main class="min-h-full relative"><!-- Floating Halloween Elements -->
-   <div class="absolute inset-0 pointer-events-none overflow-hidden">
-    <div class="absolute top-20 left-10 text-4xl float">
-     🎃
-    </div>
-    <div class="absolute top-32 right-20 text-3xl float" style="animation-delay: -1s;">
-     👻
-    </div>
-    <div class="absolute top-60 left-1/4 text-2xl float" style="animation-delay: -2s;">
-     🦇
-    </div>
-    <div class="absolute top-80 right-1/3 text-3xl float" style="animation-delay: -0.5s;">
-     🕷️
-    </div>
-    <div class="absolute bottom-40 left-20 text-2xl float" style="animation-delay: -1.5s;">
-     🌙
-    </div>
-    <div class="absolute bottom-60 right-10 text-4xl spin">
-     🕸️
-    </div>
-   </div><!-- Header Section -->
-   <header class="text-center pt-16 pb-8 relative z-10">
-    <div class="container mx-auto px-4">
-     <h1 id="main-title" class="text-6xl md:text-8xl font-bold mb-4 glow" style="font-family: 'Creepster', cursive, Arial, sans-serif;">Happy Halloween! 🎃</h1>
-     <p id="subtitle" class="text-2xl md:text-3xl mb-8 text-orange-300" style="font-family: 'Creepster', cursive, Arial, sans-serif;">Spooky Night Awaits</p>
-    </div>
-   </header><!-- Main Content -->
-   <section class="container mx-auto px-4 py-12 relative z-10">
-    <div class="max-w-4xl mx-auto"><!-- Event Info Card -->
-     <div class="bg-black bg-opacity-50 rounded-3xl p-8 mb-12 border-2 border-orange-500 pumpkin-shadow">
-      <div class="text-center mb-8">
-       <div class="text-6xl mb-4 bounce">
-        🎃👻🦇
-       </div>
-       <h2 id="event-date" class="text-3xl font-bold text-orange-400 mb-4" style="font-family: 'Creepster', cursive, Arial, sans-serif;">October 31st</h2>
-       <p id="description" class="text-xl text-gray-300 leading-relaxed" style="font-family: 'Creepster', cursive, Arial, sans-serif;">Join us for a frightfully fun celebration filled with tricks, treats, and spooky surprises!</p>
-      </div>
-      <div class="text-center"><button id="cta-button" class="bg-orange-600 hover:bg-orange-700 text-white font-bold py-4 px-8 rounded-full text-xl transition-all duration-300 transform hover:scale-105 pumpkin-shadow" style="font-family: 'Creepster', cursive, Arial, sans-serif;"> Join the Fun! 🎃 </button>
-      </div>
-     </div><!-- Halloween Activities Grid -->
-     <div class="grid md:grid-cols-3 gap-8 mb-12">
-      <div class="bg-purple-900 bg-opacity-60 rounded-2xl p-6 text-center border border-purple-500 hover:transform hover:scale-105 transition-all duration-300">
-       <div class="text-5xl mb-4 bounce" style="animation-delay: -0.2s;">
-        🍭
-       </div>
-       <h3 class="text-xl font-bold mb-2 text-purple-300" style="font-family: 'Creepster', cursive, Arial, sans-serif;">Trick or Treat</h3>
-       <p class="text-gray-300" style="font-family: 'Creepster', cursive, Arial, sans-serif;">Sweet treats and spooky surprises</p>
-      </div>
-      <div class="bg-green-900 bg-opacity-60 rounded-2xl p-6 text-center border border-green-500 hover:transform hover:scale-105 transition-all duration-300">
-       <div class="text-5xl mb-4 bounce" style="animation-delay: -0.4s;">
-        🧙‍♀️
-       </div>
-       <h3 class="text-xl font-bold mb-2 text-green-300" style="font-family: 'Creepster', cursive, Arial, sans-serif;">Costume Contest</h3>
-       <p class="text-gray-300" style="font-family: 'Creepster', cursive, Arial, sans-serif;">Show off your spookiest outfit</p>
-      </div>
-      <div class="bg-red-900 bg-opacity-60 rounded-2xl p-6 text-center border border-red-500 hover:transform hover:scale-105 transition-all duration-300">
-       <div class="text-5xl mb-4 bounce" style="animation-delay: -0.6s;">
-        🏚️
-       </div>
-       <h3 class="text-xl font-bold mb-2 text-red-300" style="font-family: 'Creepster', cursive, Arial, sans-serif;">Haunted House</h3>
-       <p class="text-gray-300" style="font-family: 'Creepster', cursive, Arial, sans-serif;">Dare to enter if you can</p>
-      </div>
-     </div><!-- Halloween Characters -->
-     <div class="text-center">
-      <div class="flex justify-center items-center space-x-8 text-6xl mb-8"><span class="float">🎃</span> <span class="float" style="animation-delay: -0.5s;">👻</span> <span class="float" style="animation-delay: -1s;">🧛‍♂️</span> <span class="float" style="animation-delay: -1.5s;">🧙‍♀️</span> <span class="float" style="animation-delay: -2s;">🦇</span>
-      </div>
-     </div>
-    </div>
-   </section><!-- Footer -->
-   <footer class="text-center py-8 relative z-10">
-    <p class="text-orange-300 text-lg" style="font-family: 'Creepster', cursive, Arial, sans-serif;">Have a Spook-tacular Halloween! 🎃👻</p>
-   </footer>
-  </main>
-  <script>
+    <style>@view-transition { navigation: auto; }</style>
+    <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+</head>
+<body class="h-full gradient-bg text-white overflow-x-hidden">
+    <main class="min-h-full relative">
+        
+        <div class="absolute inset-0 pointer-events-none overflow-hidden">
+            <div class="absolute top-20 left-10 text-4xl float z-0">🎃</div>
+            <div class="absolute top-32 right-20 text-3xl float" style="animation-delay: -1.5s; z-index: 0;">👻</div>
+            <div class="absolute top-60 left-1/4 text-2xl float" style="animation-delay: -3s; z-index: 0;">🦇</div>
+            <div class="absolute top-80 right-1/3 text-3xl float" style="animation-delay: -0.8s; z-index: 0;">🕷️</div>
+            <div class="absolute bottom-40 left-20 text-2xl float" style="animation-delay: -2.5s; z-index: 0;">🌙</div>
+            <div class="absolute bottom-60 right-10 text-4xl spin z-0">🕸️</div>
+        </div>
+        
+        <header class="text-center pt-16 pb-8 relative z-10">
+            <div class="container mx-auto px-4">
+                <h1 id="main-title" class="text-6xl md:text-8xl font-bold mb-4 glow">Happy Halloween! 🎃</h1>
+                <p id="subtitle" class="text-2xl md:text-3xl mb-8 text-orange-300">Spooky Night Awaits</p>
+            </div>
+        </header>
+        
+        <section class="container mx-auto px-4 py-12 relative z-10">
+            <div class="max-w-4xl mx-auto">
+                
+                <div class="bg-black bg-opacity-60 rounded-3xl p-8 mb-12 border-4 border-orange-500 pumpkin-shadow">
+                    <div class="text-center mb-8">
+                        <div class="text-6xl mb-4 bounce">
+                            🎃👻🦇
+                        </div>
+                        <h2 id="event-date" class="text-4xl font-bold text-orange-400 mb-4">October 31st</h2>
+                        <p id="description" class="text-xl text-gray-300 leading-relaxed">Join us for a frightfully fun celebration filled with tricks, treats, and spooky surprises!</p>
+                    </div>
+                    <div class="text-center">
+                        <button id="cta-button" class="bg-orange-600 hover:bg-orange-700 text-white font-bold py-4 px-10 rounded-full text-2xl transition-all duration-300 transform hover:scale-110 pumpkin-shadow">
+                            Join the Fun! 🎃
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="grid md:grid-cols-3 gap-8 mb-12">
+                    <div id="activity-1" class="activity-card bg-purple-900 bg-opacity-70 rounded-2xl p-6 text-center border-2 border-purple-500 hover:shadow-lg hover:shadow-purple-700/50 hover:scale-[1.02]">
+                        <div class="text-5xl mb-4 bounce" style="animation-delay: -0.2s;">🍭</div>
+                        <h3 class="text-2xl font-bold mb-2 text-purple-300">Trick or Treat</h3>
+                        <p class="text-gray-300">Sweet treats and spooky surprises</p>
+                    </div>
+                    
+                    <div id="activity-2" class="activity-card bg-green-900 bg-opacity-70 rounded-2xl p-6 text-center border-2 border-green-500 hover:shadow-lg hover:shadow-green-700/50 hover:scale-[1.02]">
+                        <div class="text-5xl mb-4 bounce" style="animation-delay: -0.4s;">🧙‍♀️</div>
+                        <h3 class="text-2xl font-bold mb-2 text-green-300">Costume Contest</h3>
+                        <p class="text-gray-300">Show off your spookiest outfit</p>
+                    </div>
+                    
+                    <div id="activity-3" class="activity-card bg-red-900 bg-opacity-70 rounded-2xl p-6 text-center border-2 border-red-500 hover:shadow-lg hover:shadow-red-700/50 hover:scale-[1.02]">
+                        <div class="text-5xl mb-4 bounce" style="animation-delay: -0.6s;">🏚️</div>
+                        <h3 class="text-2xl font-bold mb-2 text-red-300">Haunted House</h3>
+                        <p class="text-gray-300">Dare to enter if you can</p>
+                    </div>
+                </div>
+                
+                <div class="text-center">
+                    <div class="flex justify-center items-center space-x-10 text-6xl mb-8">
+                        <span class="float">🎃</span> 
+                        <span class="float" style="animation-delay: -1s;">👻</span> 
+                        <span class="float" style="animation-delay: -2s;">🧛‍♂️</span> 
+                        <span class="float" style="animation-delay: -3s;">🧙‍♀️</span> 
+                        <span class="float" style="animation-delay: -4s;">🦇</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <footer class="text-center py-8 relative z-10">
+            <p class="text-orange-300 text-xl">Have a Spook-tacular Halloween! 🎃👻</p>
+        </footer>
+    </main>
+    
+    <script>
         const defaultConfig = {
             main_title: "Happy Halloween! 🎃",
             subtitle: "Spooky Night Awaits",
@@ -130,10 +143,12 @@
             description: "Join us for a frightfully fun celebration filled with tricks, treats, and spooky surprises!",
             cta_button: "Join the Fun! 🎃",
             background_color: "#1a1a2e",
-            primary_color: "#ff6b35",
+            primary_color: "#ff6b35", // Main glow color
             text_color: "#ffffff",
-            accent_color: "#9333ea",
-            secondary_color: "#f97316",
+            accent_color: "#9333ea", // Secondary/Activity highlight 1
+            secondary_color: "#f97316", // Button/Accent color 2
+            tertiary_color: "#4ade80", // Activity highlight 2
+            quaternary_color: "#f87171", // Activity highlight 3
             font_family: "Creepster",
             font_size: 16
         };
@@ -148,52 +163,100 @@
             const backgroundColor = config.background_color || defaultConfig.background_color;
             const primaryColor = config.primary_color || defaultConfig.primary_color;
             const textColor = config.text_color || defaultConfig.text_color;
-            const accentColor = config.accent_color || defaultConfig.accent_color;
             const secondaryColor = config.secondary_color || defaultConfig.secondary_color;
+            const accentColor = config.accent_color || defaultConfig.accent_color;
+            const tertiaryColor = config.tertiary_color || defaultConfig.tertiary_color;
+            const quaternaryColor = config.quaternary_color || defaultConfig.quaternary_color;
             
             const fontFamily = config.font_family || defaultConfig.font_family;
             const fontSize = config.font_size || defaultConfig.font_size;
 
-            // Update text content
+            // 1. Update text content
             document.getElementById('main-title').textContent = mainTitle;
             document.getElementById('subtitle').textContent = subtitle;
             document.getElementById('event-date').textContent = eventDate;
             document.getElementById('description').textContent = description;
             document.getElementById('cta-button').textContent = ctaButton;
 
-            // Update colors
+            // 2. Update colors
+            
+            // Background Gradient
             document.body.style.background = `linear-gradient(135deg, ${backgroundColor} 0%, #16213e 50%, #0f3460 100%)`;
             document.body.style.color = textColor;
             
-            // Update primary color elements
+            // Primary Glow
             const glowElements = document.querySelectorAll('.glow');
             glowElements.forEach(el => {
-                el.style.textShadow = `0 0 20px ${primaryColor}, 0 0 30px ${primaryColor}, 0 0 40px ${primaryColor}`;
+                el.style.textShadow = `0 0 20px ${primaryColor}, 0 0 30px ${primaryColor}`;
+                
+                // Update CSS keyframes for glow dynamically
+                const styleSheet = document.styleSheets[0];
+                const rules = styleSheet.cssRules || styleSheet.rules;
+                for (let i = 0; i < rules.length; i++) {
+                    if (rules[i].name === 'glow') {
+                        rules[i].deleteRule(0);
+                        rules[i].insertRule(`0%, 100% { text-shadow: 0 0 20px ${primaryColor}, 0 0 30px ${primaryColor}; }`, 0);
+                        rules[i].deleteRule(1);
+                        rules[i].insertRule(`50% { text-shadow: 0 0 35px ${primaryColor}, 0 0 45px ${primaryColor}; }`, 1);
+                        break;
+                    }
+                }
             });
-            
-            // Update button colors
+
+            // Button and Event Card Border
             const button = document.getElementById('cta-button');
             button.style.backgroundColor = secondaryColor;
-            button.style.borderColor = secondaryColor;
+            
+            const eventCard = document.querySelector('.pumpkin-shadow');
+            eventCard.style.borderColor = primaryColor;
+            eventCard.style.boxShadow = `0 10px 30px ${primaryColor}40`; // 40 is alpha transparency
 
-            // Update font
-            const fontStack = `${fontFamily}, cursive, Arial, sans-serif`;
-            document.querySelectorAll('[style*="font-family"]').forEach(el => {
-                el.style.fontFamily = fontStack;
+            // Activity Card Colors (Customized based on accent/tertiary/quaternary)
+            const activities = [
+                { id: 'activity-1', color: accentColor, textClass: 'text-purple-300', emoji: '🍭' },
+                { id: 'activity-2', color: tertiaryColor, textClass: 'text-green-300', emoji: '🧙‍♀️' },
+                { id: 'activity-3', color: quaternaryColor, textClass: 'text-red-300', emoji: '🏚️' }
+            ];
+
+            activities.forEach((activity, index) => {
+                const el = document.getElementById(activity.id);
+                if (el) {
+                    el.style.borderColor = activity.color;
+                    el.style.backgroundColor = `${activity.color}70`; // 70 is alpha transparency
+                    
+                    const title = el.querySelector('h3');
+                    if(title) {
+                        title.style.color = activity.color;
+                    }
+                }
             });
 
-            // Update font sizes proportionally
-            document.getElementById('main-title').style.fontSize = `${fontSize * 4}px`;
-            document.getElementById('subtitle').style.fontSize = `${fontSize * 1.5}px`;
-            document.getElementById('event-date').style.fontSize = `${fontSize * 1.875}px`;
-            document.getElementById('description').style.fontSize = `${fontSize * 1.25}px`;
-            document.getElementById('cta-button').style.fontSize = `${fontSize * 1.25}px`;
+
+            // 3. Update font
+            const fontStack = `'${fontFamily}', cursive, Arial, sans-serif`;
+            document.querySelectorAll('h1, h2, h3, p, button').forEach(el => {
+                 // Only update elements that originally had a font style applied or are meant to be updated
+                if (el.matches('#main-title, #subtitle, #event-date, #description, #cta-button') || el.closest('.activity-card') || el.closest('footer')) {
+                    el.style.fontFamily = fontStack;
+                }
+            });
+
+            // 4. Update font sizes proportionally
+            document.getElementById('main-title').style.fontSize = `${fontSize * 4.5}px`; // ~72px
+            document.getElementById('subtitle').style.fontSize = `${fontSize * 1.75}px`; // ~28px
+            document.getElementById('event-date').style.fontSize = `${fontSize * 2.25}px`; // ~36px
+            document.getElementById('description').style.fontSize = `${fontSize * 1.25}px`; // ~20px
+            document.getElementById('cta-button').style.fontSize = `${fontSize * 1.5}px`; // ~24px
+            
+            document.querySelectorAll('.activity-card h3').forEach(el => el.style.fontSize = `${fontSize * 1.5}px`);
+            document.querySelectorAll('.activity-card p').forEach(el => el.style.fontSize = `${fontSize * 1}px`);
         }
 
         function mapToCapabilities(config) {
             return {
                 recolorables: [
                     {
+                        label: "Màu Nền Chính",
                         get: () => config.background_color || defaultConfig.background_color,
                         set: (value) => {
                             config.background_color = value;
@@ -201,6 +264,7 @@
                         }
                     },
                     {
+                        label: "Màu Phát Sáng/Viền Chính",
                         get: () => config.primary_color || defaultConfig.primary_color,
                         set: (value) => {
                             config.primary_color = value;
@@ -208,6 +272,7 @@
                         }
                     },
                     {
+                        label: "Màu Chữ",
                         get: () => config.text_color || defaultConfig.text_color,
                         set: (value) => {
                             config.text_color = value;
@@ -215,6 +280,15 @@
                         }
                     },
                     {
+                        label: "Màu Nút CTA",
+                        get: () => config.secondary_color || defaultConfig.secondary_color,
+                        set: (value) => {
+                            config.secondary_color = value;
+                            window.elementSdk.setConfig({ secondary_color: value });
+                        }
+                    },
+                    {
+                        label: "Màu Hoạt động 1 (Trick or Treat)",
                         get: () => config.accent_color || defaultConfig.accent_color,
                         set: (value) => {
                             config.accent_color = value;
@@ -222,10 +296,19 @@
                         }
                     },
                     {
-                        get: () => config.secondary_color || defaultConfig.secondary_color,
+                        label: "Màu Hoạt động 2 (Costume Contest)",
+                        get: () => config.tertiary_color || defaultConfig.tertiary_color,
                         set: (value) => {
-                            config.secondary_color = value;
-                            window.elementSdk.setConfig({ secondary_color: value });
+                            config.tertiary_color = value;
+                            window.elementSdk.setConfig({ tertiary_color: value });
+                        }
+                    },
+                    {
+                        label: "Màu Hoạt động 3 (Haunted House)",
+                        get: () => config.quaternary_color || defaultConfig.quaternary_color,
+                        set: (value) => {
+                            config.quaternary_color = value;
+                            window.elementSdk.setConfig({ quaternary_color: value });
                         }
                     }
                 ],
@@ -269,14 +352,16 @@
 
         // Add click effect to button
         document.getElementById('cta-button').addEventListener('click', function() {
+            this.classList.add('animate-none'); // Disable hover effect temporarily
             this.style.transform = 'scale(0.95)';
             setTimeout(() => {
                 this.style.transform = 'scale(1.05)';
                 setTimeout(() => {
-                    this.style.transform = 'scale(1)';
+                    this.style.transform = 'scale(1.1)';
+                    this.classList.remove('animate-none');
                 }, 100);
             }, 100);
         });
     </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99eb1f1a2572211d',t:'MTc2MzE3MTY3NS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</body>
 </html>
